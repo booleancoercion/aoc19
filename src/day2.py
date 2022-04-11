@@ -47,19 +47,14 @@ def bruteforce(data, desired) -> Tuple[int, int]:
     raise Exception("Couldn't find noun and verb")
 
 
-def solve():
-    with open("../inputs/day2.txt") as f:
-        data = [int(x) for x in f.read().split(',')]
+with open("../inputs/day2.txt") as f:
+    data = [int(x) for x in f.read().split(',')]
 
-    vm = VM(data)
-    vm.data[1] = 12
-    vm.data[2] = 2
-    vm.simulate()
-    print(f"Part 1: {vm.data[0]}")
+vm = VM(data)
+vm.data[1] = 12
+vm.data[2] = 2
+vm.simulate()
+print(f"Part 1: {vm.data[0]}")
 
-    noun, verb = bruteforce(data, 19690720)
-    print(f"Part 2: {100 * noun + verb}")
-
-
-if __name__ == "__main__":
-    solve()
+noun, verb = bruteforce(data, 19690720)
+print(f"Part 2: {100 * noun + verb}")

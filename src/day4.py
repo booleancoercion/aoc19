@@ -1,17 +1,3 @@
-def solve():
-    with open("../inputs/day4.txt") as f:
-        data = f.read()
-
-    a, b = data.split('-')
-    a, b = int(a), int(b)
-
-    valid1 = [pwd for pwd in range(a, b+1) if is_valid(pwd)]
-    print(f"Part 1: {len(valid1)}")
-
-    valid2 = [pwd for pwd in valid1 if is_valid2(pwd)]
-    print(f"Part 2: {len(valid2)}")
-
-
 def is_valid(pwd):
     last_digit = 10
     has_double = False
@@ -38,5 +24,14 @@ def is_valid2(pwd):
     return any(x == 2 for x in counts)
 
 
-if __name__ == "__main__":
-    solve()
+with open("../inputs/day4.txt") as f:
+    data = f.read()
+
+a, b = data.split('-')
+a, b = int(a), int(b)
+
+valid1 = [pwd for pwd in range(a, b+1) if is_valid(pwd)]
+print(f"Part 1: {len(valid1)}")
+
+valid2 = [pwd for pwd in valid1 if is_valid2(pwd)]
+print(f"Part 2: {len(valid2)}")

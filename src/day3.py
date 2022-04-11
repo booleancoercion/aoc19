@@ -1,22 +1,6 @@
 from typing import Dict, Tuple
 
 
-def solve():
-    with open("../inputs/day3.txt") as f:
-        [wire1, wire2] = [wire.split(',') for wire in f.readlines()]
-
-    pt1 = fill_grid(wire1)
-    pt2 = fill_grid(wire2)
-
-    isct = {(x, y): t + pt2[(x, y)]
-            for ((x, y), t) in pt1.items() if (x, y) in pt2}
-    dist = min(abs(x) + abs(y) for (x, y) in isct.keys())
-    print(f"Part 1: {dist}")
-
-    time = min(isct.values())
-    print(f"Part 2: {time}")
-
-
 def fill_grid(wire) -> Dict[Tuple[int, int], int]:
     x, y, t = 0, 0, 0
     grid = dict()
@@ -45,5 +29,16 @@ def get_offset(letter):
         return (0, -1)
 
 
-if __name__ == "__main__":
-    solve()
+with open("../inputs/day3.txt") as f:
+    [wire1, wire2] = [wire.split(',') for wire in f.readlines()]
+
+pt1 = fill_grid(wire1)
+pt2 = fill_grid(wire2)
+
+isct = {(x, y): t + pt2[(x, y)]
+        for ((x, y), t) in pt1.items() if (x, y) in pt2}
+dist = min(abs(x) + abs(y) for (x, y) in isct.keys())
+print(f"Part 1: {dist}")
+
+time = min(isct.values())
+print(f"Part 2: {time}")
